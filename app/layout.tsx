@@ -9,7 +9,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Black Swans Furniture Store",
   description:
-    "e-commerce-store application built with Next.js, Typescript and Tailwind CSS",
+    "A nifty e-commerce-store application built with Next.js, Typescript and Tailwind CSS",
   keywords: [
     "Next.js",
     "Tailwind CSS",
