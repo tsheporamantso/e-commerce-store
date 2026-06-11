@@ -469,7 +469,7 @@ npm install @prisma/client
 ```
 
 ```sh
-npx prisma init
+npx prisma@latest init
 ```
 
 ### Setup Instance
