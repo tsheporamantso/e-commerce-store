@@ -10,6 +10,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@prisma/client": "^7.8.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
@@ -35,6 +36,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "husky": "^9.1.7",
+    "prisma": "^7.8.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
