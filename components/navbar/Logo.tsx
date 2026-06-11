@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Logo = () => {
   return (
-    <Button size={"icon-lg"} asChild className="bg-blue-500 hover:bg-blue-600">
+    <Button size={"icon-lg"} asChild>
       <Link href={"/"}>
         <VscCode className="w-6 h-6" />
       </Link>
