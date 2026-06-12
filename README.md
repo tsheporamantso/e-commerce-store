@@ -528,9 +528,10 @@ generator client {
 model TestProfile {
 id  String @id @default(uuid())
 name String
-
+}
 ```
 
+- npx prisma generate // Just confirm when to run this command
 - npx prisma migrate dev --name init
 - npx prisma db push
 
