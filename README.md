@@ -676,7 +676,7 @@ model Product {
 - stop server
 
 ```bash
-npx prisma db push
+npx prisma db push I prefer prisma migrate dev --name xxxxxx (But set migrate, generate and push on package.json script)
 npx prisma studio
 npm run dev
 ```
