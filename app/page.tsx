@@ -1,7 +1,11 @@
+import FeaturedProducts from "@/components/home/FeaturedProducts";
+import Hero from "@/components/home/Hero";
+
 export default function Home() {
   return (
-    <div>
-      <h1 className="text-3xl text-muted-foreground">Home Page</h1>
-    </div>
+    <>
+      <Hero />
+      <FeaturedProducts />
+    </>
   );
 }
