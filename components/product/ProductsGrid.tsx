@@ -9,8 +9,7 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
   return (
     <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => {
-        const { name, price, image } = product;
-        const productId = product.id;
+        const { name, price, image, id: productId } = product;
         const dollarsAmount = formatCurrency(price);
         return (
           <article key={productId} className="group relative">
