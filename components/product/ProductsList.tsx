@@ -8,9 +8,8 @@ function ProductsList({ products }: { products: Product[] }) {
   return (
     <div className="mt-12 grid gap-y-8">
       {products.map((product) => {
-        const { name, price, image, company } = product;
+        const { name, price, image, company, id: productId } = product;
         const dollarsAmount = formatCurrency(price);
-        const productId = product.id;
         return (
           <article key={productId} className="group relative">
             <Link href={`/products/${productId}`}>
