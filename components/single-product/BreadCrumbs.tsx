@@ -6,14 +6,15 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import Link from "next/link";
 
 const BreadCrumbs = ({ name }: { name: string }) => {
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/" className="capitalize text-lg">
-            home
+          <BreadcrumbLink asChild className="capitalize text-lg">
+            <Link href={"/"}>home</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
