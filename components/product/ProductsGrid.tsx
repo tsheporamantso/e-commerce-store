@@ -9,7 +9,7 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
   return (
     <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => {
-        const { name, price, image, id: productId } = product;
+        const { name, price, image, id: productId, company } = product;
         const dollarsAmount = formatCurrency(price);
         return (
           <article key={productId} className="group relative">
@@ -28,6 +28,7 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
                   </div>
                   <div className="mt-4 text-center">
                     <h2 className="text-lg  capitalize">{name}</h2>
+                    <h4 className="text-muted-foreground">{company}</h4>
                     <p className="text-muted-foreground  mt-2">
                       {dollarsAmount}
                     </p>

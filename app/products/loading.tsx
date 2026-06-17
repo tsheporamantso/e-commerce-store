@@ -1,3 +1,4 @@
+"use client";
 import LoadingContainer from "@/components/global/LoadingContainer";
 import React from "react";
 
