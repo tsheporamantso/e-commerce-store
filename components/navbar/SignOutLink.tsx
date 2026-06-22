@@ -3,9 +3,6 @@ import { toast } from "sonner";
 import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
 
-// const handleLogout = () => {
-//   toast("Logging Out", { description: "Logged out successfully" });
-// };
 const SignOutLink = () => {
   return (
     <SignOutButton>
