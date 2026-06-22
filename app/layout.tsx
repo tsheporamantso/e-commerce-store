@@ -1,4 +1,4 @@
-import {ClerkProvider} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -35,8 +35,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <ClerkProvider>
           <Providers>
-          <Navbar />
-          <Container className="py-20">{children}</Container>
+            <Navbar />
+            <Container className="py-20">{children}</Container>
           </Providers>
         </ClerkProvider>
       </body>
