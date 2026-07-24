@@ -28,7 +28,7 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
                   </div>
                   <div className="mt-4 text-center">
                     <h2 className="text-lg  capitalize">{name}</h2>
-                    <h4 className="text-muted-foreground">{company}</h4>
+                    <h4 className="text-muted-foreground text-xs">{company}</h4>
                     <p className="text-muted-foreground  mt-2">
                       {dollarsAmount}
                     </p>
@@ -36,7 +36,7 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
                 </CardContent>
               </Card>
             </Link>
-            <div className="absolute top-7 right-7 z-5">
+            <div className="absolute top-10 right-6 z-5">
               <FavoriteToggleButton productId={productId} />
             </div>
           </article>
