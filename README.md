@@ -450,7 +450,7 @@ export default LinksDropdown;
 
 - create account and organization
 - create project
-- setup password in .env (optional)
+- setup password in .env
 - add .env to .gitignore !!!
 - it will take few minutes
 
