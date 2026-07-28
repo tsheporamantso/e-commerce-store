@@ -17,15 +17,15 @@ const BreadCrumbs = ({ name }: { name: string }) => {
             <Link href={"/"}>home</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
-
         <BreadcrumbSeparator />
+
         <BreadcrumbItem>
           <BreadcrumbLink href="/products" className="capitalize text-lg">
             products
           </BreadcrumbLink>
         </BreadcrumbItem>
-
         <BreadcrumbSeparator />
+
         <BreadcrumbItem>
           <BreadcrumbPage className="capitalize text-lg">{name}</BreadcrumbPage>
         </BreadcrumbItem>
