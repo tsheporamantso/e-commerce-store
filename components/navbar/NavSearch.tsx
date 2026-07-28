@@ -20,7 +20,7 @@ function NavSearch() {
       params.delete("search");
     }
     replace(`/products?${params.toString()}`);
-  }, 300);
+  }, 500);
 
   const search = searchParams.get("search") ?? "";
 
