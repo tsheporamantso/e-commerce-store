@@ -1,13 +1,14 @@
 import React from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
+import { Prisma } from "@/lib/generated/prisma/client";
 
 const ImageInput = () => {
-  const name = "image";
+  const name = Prisma.ProductScalarFieldEnum.image;
   return (
     <div className="mb-2">
       <Label htmlFor={name} className="capitalize">
-        Image
+        image
       </Label>
       <Input id={name} name={name} type="file" required accept="image/*" />
     </div>
