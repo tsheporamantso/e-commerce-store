@@ -1,5 +1,8 @@
+"use server";
+
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import { type ProductActionState } from "./types";
 
 export const fetchFeaturedProducts = async () => {
   const products = await prisma.product.findMany({
@@ -10,8 +13,8 @@ export const fetchFeaturedProducts = async () => {
   return products;
 };
 
-export const fetchAllProducts = ({ search = "" }: { search: string }) => {
-  return prisma.product.findMany({
+export const fetchAllProducts = async ({ search = "" }: { search: string }) => {
+  const products = await prisma.product.findMany({
     where: {
       OR: [
         { name: { contains: search, mode: "insensitive" } },
@@ -22,6 +25,7 @@ export const fetchAllProducts = ({ search = "" }: { search: string }) => {
       createdAt: "desc",
     },
   });
+  return products;
 };
 
 export const fetchSingleProduct = async (productId: string) => {
@@ -34,4 +38,11 @@ export const fetchSingleProduct = async (productId: string) => {
     redirect("/products");
   }
   return product;
+};
+
+export const createProductAction = async (
+  prevState: ProductActionState,
+  formData: FormData,
+): Promise<{ message: string }> => {
+  return { message: "product created" };
 };

@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export type actionFunction = (
-  prevState: any,
+  prevState: { message: string },
   formData: FormData,
 ) => Promise<{ message: string }>;
 
@@ -20,4 +19,8 @@ export type CartState = {
   shipping: number;
   tax: number;
   orderTotal: number;
+};
+
+export type ProductActionState = {
+  message: string;
 };

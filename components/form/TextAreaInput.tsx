@@ -15,7 +15,7 @@ const TextAreaInput = ({
 }: TextAreaInputProps) => {
   return (
     <div className="mb-2">
-      <Label htmlFor={name} className="capitalize">
+      <Label htmlFor={name} className="capitalize  mb-2">
         {labelText || name}
       </Label>
       <Textarea
