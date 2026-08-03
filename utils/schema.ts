@@ -10,12 +10,15 @@ export const productSchema = z.object({
       message: "name must not exceed 100 characters.",
     }),
   company: z.string(),
-  featured: z.coerce.boolean(),
+  featured: z.coerce.boolean().optional().default(false),
   price: z.coerce.number().int().min(0, {
     message: "price must be a positive number.",
   }),
-  description: z.string().refine((description) => {
-    const wordCount = description.split(" ").length;
-    return wordCount >= 10 && wordCount <= 100;
-  }),
+  description: z.string().refine(
+    (description) => {
+      const wordCount = description.split(" ").length;
+      return wordCount >= 10 && wordCount <= 100;
+    },
+    { message: "description must be between 10 and 100 words" },
+  ),
 });

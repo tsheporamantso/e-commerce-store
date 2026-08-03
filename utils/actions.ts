@@ -3,7 +3,8 @@
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { type ProductActionState } from "./types";
-import { currentUser, auth } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs/server";
+import { productSchema } from "./schema";
 
 const renderError = (error: unknown): { message: string } => {
   console.log(error);
@@ -64,7 +65,20 @@ export const createProductAction = async (
 
   try {
     const rawData = Object.fromEntries(formData);
-    console.log(rawData);
+    const validatedFields = productSchema.safeParse(rawData);
+
+    if (!validatedFields.success) {
+      const errors = validatedFields.error.issues.map((error) => error.message);
+      throw new Error(errors.join(","));
+    }
+
+    await prisma.product.create({
+      data: {
+        ...validatedFields.data,
+        image: "/images/hero1.jpg",
+        clerkId: user.id,
+      },
+    });
 
     return { message: "product created" };
   } catch (error) {
