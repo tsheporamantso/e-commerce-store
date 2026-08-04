@@ -39,6 +39,10 @@ const LinksDropdown = async () => {
               <button className="w-full text-left">Register</button>
             </SignUpButton>
           </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Link href={"/about"}>About</Link>
+          </DropdownMenuItem>
         </Show>
         <Show when={"signed-in"}>
           {links.map((link) => {

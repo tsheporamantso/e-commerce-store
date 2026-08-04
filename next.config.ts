@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
         hostname: "img.clerk.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "orduvdboqsuhpjmfdyhm.supabase.co",
+        port: "",
+      },
     ],
   },
   output: "standalone",
