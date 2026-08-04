@@ -6,6 +6,7 @@ import { type ProductActionState } from "./types";
 import { currentUser } from "@clerk/nextjs/server";
 import { imageSchema, productSchema, validationWithZodSchema } from "./schema";
 import { uploadImage } from "./supabase";
+import { revalidatePath } from "next/cache";
 
 const renderError = (error: unknown): { message: string } => {
   console.log(error);
@@ -99,4 +100,22 @@ export const fetchAdminProducts = async () => {
     },
   });
   return products;
+};
+
+export const deleteProductAction = async (prevState: { productId: string }) => {
+  const { productId } = prevState;
+
+  await getAdminUser();
+
+  try {
+    await prisma.product.delete({
+      where: {
+        id: productId,
+      },
+    });
+    revalidatePath("/admin/products");
+    return { message: "product removed" };
+  } catch (error) {
+    return renderError(error);
+  }
 };
