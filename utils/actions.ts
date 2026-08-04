@@ -68,7 +68,7 @@ export const createProductAction = async (
     const validatedFields = productSchema.safeParse(rawData);
 
     if (!validatedFields.success) {
-      const errors = validatedFields.error.issues.map((error) => error.message);
+      const errors = validatedFields.error.issues.map(({ message }) => message);
       throw new Error(errors.join(","));
     }
 

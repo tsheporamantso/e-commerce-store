@@ -17,7 +17,7 @@ export const productSchema = z.object({
   description: z.string().refine(
     (description) => {
       const wordCount = description.split(" ").length;
-      return wordCount >= 10 && wordCount <= 100;
+      return wordCount >= 10 && wordCount <= 1000;
     },
     { message: "description must be between 10 and 100 words" },
   ),
