@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { type ProductActionState } from "./types";
 import { currentUser } from "@clerk/nextjs/server";
-import { productSchema } from "./schema";
+import { productSchema, validationWithZodSchema } from "./schema";
 
 const renderError = (error: unknown): { message: string } => {
   console.log(error);
@@ -65,16 +65,11 @@ export const createProductAction = async (
 
   try {
     const rawData = Object.fromEntries(formData);
-    const validatedFields = productSchema.safeParse(rawData);
-
-    if (!validatedFields.success) {
-      const errors = validatedFields.error.issues.map(({ message }) => message);
-      throw new Error(errors.join(","));
-    }
+    const validatedFields = validationWithZodSchema(productSchema, rawData);
 
     await prisma.product.create({
       data: {
-        ...validatedFields.data,
+        ...validatedFields,
         image: "/images/hero1.jpg",
         clerkId: user.id,
       },

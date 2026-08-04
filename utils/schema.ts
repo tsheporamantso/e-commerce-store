@@ -22,3 +22,15 @@ export const productSchema = z.object({
     { message: "description must be between 10 and 100 words" },
   ),
 });
+
+export function validationWithZodSchema<T>(
+  schema: z.ZodType<T>,
+  data: unknown,
+): T {
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    const error = result.error.issues.map(({ message }) => message);
+    throw new Error(error.join(", "));
+  }
+  return result.data;
+}
