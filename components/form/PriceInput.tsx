@@ -13,7 +13,7 @@ const PriceInput = ({ defaultValue }: FormInputNumberProps) => {
   return (
     <div className="mb-2">
       <Label htmlFor={name} className="capitalize mb-2">
-        Price ($)
+        Price (ZAR)
       </Label>
       <Input
         id={name}
