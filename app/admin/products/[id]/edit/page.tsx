@@ -21,7 +21,7 @@ const EditProductPage = async ({ params }: { params: { id: string } }) => {
             <input type="hidden" name="id" value={product.id} />
             <FormInput
               type="text"
-              label="name"
+              label="product name"
               name="name"
               defaultValue={name}
             />
