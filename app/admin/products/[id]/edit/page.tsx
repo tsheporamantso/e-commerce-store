@@ -18,6 +18,7 @@ const EditProductPage = async ({ params }: { params: { id: string } }) => {
       <div className="border p-8 rounded-md">
         <FormContainer action={updateProductAction}>
           <div className="grid gap-4 md:grid-cols-2 my-4">
+            <input type="hidden" name="id" value={product.id} />
             <FormInput
               type="text"
               label="name"

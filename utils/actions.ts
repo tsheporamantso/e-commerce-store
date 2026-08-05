@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 import { prisma } from "@/lib/prisma";
@@ -119,4 +120,49 @@ export const deleteProductAction = async (prevState: { productId: string }) => {
   } catch (error) {
     return renderError(error);
   }
+};
+
+export const fetchAdminProductDetails = async (productId: string) => {
+  await getAdminUser();
+  const product = await prisma.product.findUnique({
+    where: {
+      id: productId,
+    },
+  });
+  if (!product) redirect("/admin/products");
+  return product;
+};
+
+export const updateProductAction = async (
+  prevState: any,
+  formData: FormData,
+) => {
+  await getAdminUser();
+  try {
+    const productId = formData.get("id") as string;
+    console.log(formData);
+    const rawData = Object.fromEntries(formData);
+
+    const validatedFields = validationWithZodSchema(productSchema, rawData);
+
+    await prisma.product.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        ...validatedFields,
+      },
+    });
+    revalidatePath(`/admin/products/${productId}/edit`);
+    return { message: "Product updated successfully" };
+  } catch (error) {
+    return renderError(error);
+  }
+};
+
+export const updateProductImageAction = async (
+  prevState: any,
+  formData: FormData,
+) => {
+  return { message: "Product Image updated successfully" };
 };
