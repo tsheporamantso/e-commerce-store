@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/global/Container";
 import Providers from "./providers";
+import ShoppingAssistant from "@/components/assistant/ShoppingAssistant";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
           <Providers>
             <Navbar />
             <Container className="py-20">{children}</Container>
+            <ShoppingAssistant />
           </Providers>
         </ClerkProvider>
       </body>
