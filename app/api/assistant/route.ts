@@ -50,8 +50,12 @@ export async function POST(req: NextRequest) {
 
   const toolCallsMade: { name: string; input: Record<string, unknown> }[] = [];
 
+  const isMockMode = process.env.MOCK_ANTHROPIC === "true";
+
   try {
     for (let step = 0; step < MAX_AGENT_STEPS; step++) {
+      if (isMockMode) console.log(`\n[AGENT LOOP] --- step ${step + 1} ---`);
+
       const response = await callAnthropic({
         system: SYSTEM_PROMPT,
         messages: conversation,
@@ -67,6 +71,12 @@ export async function POST(req: NextRequest) {
           .map((block) => block.text)
           .join("\n")
           .trim();
+
+        if (isMockMode) {
+          console.log(
+            `[AGENT LOOP] stop_reason="${response.stop_reason}" — no more tools requested, returning final reply.`,
+          );
+        }
 
         return NextResponse.json({
           reply: reply || "I couldn't find an answer to that — try rephrasing?",
@@ -84,6 +94,10 @@ export async function POST(req: NextRequest) {
 
         toolCallsMade.push({ name: block.name, input: block.input });
 
+        if (isMockMode) {
+          console.log(`[AGENT LOOP] executing tool: ${block.name}`, block.input);
+        }
+
         let resultPayload: unknown;
         try {
           resultPayload = await runAssistantTool(
@@ -94,6 +108,10 @@ export async function POST(req: NextRequest) {
           resultPayload = {
             error: toolError instanceof Error ? toolError.message : "Tool execution failed",
           };
+        }
+
+        if (isMockMode) {
+          console.log(`[AGENT LOOP] tool result:`, resultPayload);
         }
 
         toolResultBlocks.push({
