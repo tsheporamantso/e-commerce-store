@@ -29,6 +29,31 @@ producing a final answer. This mirrors the loop described in the roadmap:
    ```
 3. Run the app as normal — the assistant button appears bottom-right on every page.
 
+## Try it for free first — mock mode
+
+No API key or credits needed. Add this to `.env`:
+```
+MOCK_ANTHROPIC="true"
+```
+
+With this set, `lib/anthropic.ts` intercepts every call that would normally
+hit the real Anthropic API and returns a scripted response instead — see
+`mockAnthropicResponse()` in that file. It still runs the *real* agent loop:
+
+1. **Step 1**: the mock "decides" to call `search_products` or
+   `get_featured_products` based on keywords in your message.
+2. `app/api/assistant/route.ts` executes that tool for real, against your
+   actual Postgres database via Prisma.
+3. **Step 2**: the mock reads the real tool result and writes a canned reply
+   from it.
+
+Run `npm run dev`, open the chat widget, and watch your terminal — every
+decision and tool result is logged with an `[AGENT LOOP]` / `[MOCK]` prefix,
+so you can see the loop (decide → act → observe → decide again) happening
+turn by turn. Once you're comfortable with the mechanics and ready to spend
+real credits, just set `MOCK_ANTHROPIC="false"` (or remove it) and add your
+real `ANTHROPIC_API_KEY`.
+
 ## Extending it
 
 To give the agent a new capability, add a tool schema to `assistantTools` in
